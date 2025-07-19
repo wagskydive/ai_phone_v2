@@ -2,6 +2,8 @@ from behave import given, when, then
 import tempfile
 import os
 
+from tests.audio_utils import write_hello_wav
+
 from app.core.call_handler import CallHandler
 from app.modules.asr_whisper import WhisperASR
 from app.modules.llm_ollama import OllamaLLM
@@ -17,10 +19,12 @@ def step_given_persistent_handler(context):
 
 @when('I process an audio file')
 def step_when_process_audio(context):
+    write_hello_wav('/tmp/input.wav')
     context.handler.handle('/tmp/input.wav')
 
 @when('I process another audio file')
 def step_when_process_another_audio(context):
+    write_hello_wav('/tmp/input.wav')
     context.handler.handle('/tmp/input.wav')
 
 @then('the memory file contains the transcription and reply')
@@ -41,6 +45,7 @@ def step_then_two_summaries(context):
 
 @when('I process an audio file with interruption')
 def step_when_process_with_interrupt(context):
+    write_hello_wav('/tmp/input.wav')
     context.audio = context.handler.handle('/tmp/input.wav', interrupt_fn=lambda: True)
 
 @then('no audio is returned')

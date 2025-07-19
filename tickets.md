@@ -151,3 +151,23 @@ Implement recognition of caller names from transcribed text so the system can gr
 Update `ContextManager` so that conversation summaries are generated using the
 `OllamaLLM` client. Trimming excess history should also summarize trimmed
 entries via Ollama before discarding them.
+
+## T15 - Integrate Whisper transcription
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
+
+### Description
+Replace the ASR placeholder with actual Whisper inference, add a sample audio file for tests, update requirements, and ensure BDD scenarios validate real transcription.
+
+## T16 - Remove sample audio from repository
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
+
+### Description
+Store test audio as a base64 string to avoid binary files in the repo. Update step definitions to write the sample at runtime.
