@@ -171,3 +171,14 @@ Replace the ASR placeholder with actual Whisper inference, add a sample audio fi
 
 ### Description
 Store test audio as a base64 string to avoid binary files in the repo. Update step definitions to write the sample at runtime.
+
+## T17 - Piper TTS integration
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
+
+### Description
+Integrate the Piper TTS engine so that `PiperTTS` produces real audio bytes. Update
+the requirements and BDD tests to validate non-zero audio output.
