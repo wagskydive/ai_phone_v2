@@ -1,4 +1,5 @@
 from behave import given, when, then
+from datetime import datetime
 
 from app.modules.scheduler import CallScheduler
 
@@ -11,6 +12,10 @@ def step_given_scheduler(context, minutes, jitter):
     context.scheduler.config['jitter_minutes'] = jitter
     context.scheduler.next_interval = context.scheduler._calculate_interval()
     context.scheduler.last_call = 0
+
+@given('current hour is {hour:d}')
+def step_given_current_hour(context, hour):
+    context.scheduler.now_fn = lambda: datetime(2023, 1, 1, hour, 0, 0)
 
 @given('call window hours start {start:d} end {end:d}')
 def step_given_hours(context, start, end):

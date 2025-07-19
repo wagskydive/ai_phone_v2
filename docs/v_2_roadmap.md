@@ -84,7 +84,7 @@ Tools:
 - [ ] Interruptible AI responses using voice activity detection
 - [ ] Schedule outbound calls to extensions 601-608
 - [x] Add randomness to call interval (avg every 30 minutes)
-- [ ] Restrict call times (e.g., avoid night)
+- [x] Restrict call times (e.g., avoid night)
 - [ ] Implement memory aging / pruning
 
 ---
