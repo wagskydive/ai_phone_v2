@@ -9,6 +9,8 @@ To ensure that AI tools write consistent, maintainable, and modular code that al
 ## 📘 Design Reference
 - Always read the docs in docs/ folder and follow those instructions
 - Create or update `tickets.md` for execution tasks
+- Check for a working version 1 script /docs/Version1_ForReference/server_faster_WORKING_DO_NOT_EDIT.py to see how a basic version works.
+- Create or Update requirements.txt for all dependencies.
 
 ## 🔁 Task Behavior
 
