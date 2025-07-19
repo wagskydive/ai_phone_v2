@@ -1,5 +1,6 @@
 from behave import given, when, then
 from app.core.context_manager import ContextManager
+import tempfile
 
 @given('a new context manager')
 def step_given_new_context(context):
@@ -38,3 +39,16 @@ def step_then_combined_string(context):
 @then('only the most recent entries remain')
 def step_then_recent_entries(context):
     assert len(context.manager.history) <= 2
+
+
+@given('a context manager with persistent storage')
+def step_given_persistent_context(context):
+    tmp = tempfile.NamedTemporaryFile(delete=False)
+    tmp.close()
+    context.storage_file = tmp.name
+    context.manager = ContextManager(storage_path=context.storage_file)
+
+
+@when('I reload the context manager')
+def step_when_reload_context(context):
+    context.manager = ContextManager(storage_path=context.storage_file)

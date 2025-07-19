@@ -42,3 +42,13 @@ outlined in `docs/features/` for future development.
 
 ### Description
 Build initial ASR, TTS and LLM module classes with real method signatures as specified in `docs/v_2_design.md`. No external integrations yet.
+
+## T5 - Add persistent memory support
+- [ ] Started
+- [ ] Behavior Written
+- [ ] Code Written
+- [ ] Tests Passed
+- [ ] Documentation Written
+
+### Description
+Extend `ContextManager` to optionally persist history to disk and integrate it with `CallHandler`. Add BDD scenario for persistent memory.

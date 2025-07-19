@@ -5,13 +5,14 @@ from app.modules.asr_whisper import WhisperASR
 from app.modules.llm_ollama import OllamaLLM
 from app.modules.tts_piper import PiperTTS
 from app.core.call_handler import CallHandler
+from app.core.context_manager import ContextManager
 
 app = Flask(__name__)
 
 asr = WhisperASR()
 llm = OllamaLLM()
 tts = PiperTTS()
-handler = CallHandler(asr, llm, tts)
+handler = CallHandler(asr, llm, tts, ContextManager())
 
 @app.route('/process', methods=['POST'])
 def process():
