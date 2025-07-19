@@ -28,7 +28,7 @@ def step_when_trimming(context):
 
 @then('the summary contains "{text}"')
 def step_then_summary_contains(context, text):
-    summary = context.manager.summarize()
+    summary = context.manager.get_context()
     assert text in summary
 
 @then('a combined string of recent statements is returned')

@@ -3,3 +3,9 @@ Feature: Call handler persistence
     Given a call handler with persistent memory
     When I process an audio file
     Then the memory file contains the transcription and reply
+
+  Scenario: CallHandler references previous calls
+    Given a call handler with persistent memory
+    When I process an audio file
+    And I process another audio file
+    Then the memory file contains two summaries

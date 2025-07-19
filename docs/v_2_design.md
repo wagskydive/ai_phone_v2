@@ -69,6 +69,8 @@ ai_phone_v2/
 ### Context Manager
 - Stores per-character memory (conversation summaries)
 - Appends new summarized call data
+- Summaries are written to disk prefixed with `SUMMARY:` so later calls can
+  reference prior conversations
 - Uses summarization to avoid unbounded memory growth
 
 ### Scheduler

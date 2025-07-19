@@ -76,6 +76,18 @@ Restrict outbound calls to daytime hours using scheduler configuration and add
 BDD scenarios verifying calls are blocked outside this window.
 
 ## T8 - Reference previous calls in context
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
+
+### Description
+Enhance `ContextManager` and `CallHandler` so that the LLM prompt includes
+summaries from previous calls. Add BDD tests ensuring past conversation
+snippets are referenced when generating responses.
+
+## T9 - Interruptible AI responses
 - [ ] Started
 - [ ] Behavior Written
 - [ ] Code Written
@@ -83,6 +95,6 @@ BDD scenarios verifying calls are blocked outside this window.
 - [ ] Documentation Written
 
 ### Description
-Enhance `ContextManager` and `CallHandler` so that the LLM prompt includes
-summaries from previous calls. Add BDD tests ensuring past conversation
-snippets are referenced when generating responses.
+Implement voice activity detection to stop TTS playback when the caller
+begins speaking. Write BDD scenarios verifying that playback halts when
+input is detected mid-response.
