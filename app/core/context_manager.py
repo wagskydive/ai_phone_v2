@@ -2,12 +2,13 @@ import os
 
 
 class ContextManager:
-    """Simple context store with optional persistence."""
+    """Simple context store with optional persistence and trimming."""
 
     SUMMARY_PREFIX = "SUMMARY: "
 
-    def __init__(self, storage_path: str | None = None):
+    def __init__(self, storage_path: str | None = None, memory_limit: int | None = None):
         self.storage_path = storage_path
+        self.memory_limit = memory_limit
         # per-call history
         self.history: list[str] = []
         # summaries of previous calls
@@ -31,6 +32,14 @@ class ContextManager:
         if self.storage_path:
             with open(self.storage_path, "a") as f:
                 f.write(text + "\n")
+        # trim history if needed after adding new entry
+        self.trim_history()
+
+    def trim_history(self, limit: int | None = None) -> None:
+        """Trim stored history to at most ``limit`` entries."""
+        limit = limit if limit is not None else self.memory_limit
+        if limit is not None and len(self.history) > limit:
+            self.history = self.history[-limit:]
 
     def summarize(self) -> str:
         """Return concatenated summary for now."""

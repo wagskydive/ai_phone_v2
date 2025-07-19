@@ -12,6 +12,14 @@ def step_given_context_with_history(context):
     context.manager.add_entry("Hello")
     context.manager.add_entry("How are you?")
 
+@given('a context manager with history longer than limit')
+def step_given_history_longer(context):
+    """Create a manager with more than two entries."""
+    context.manager = ContextManager()
+    context.manager.add_entry("Hello")
+    context.manager.add_entry("How are you?")
+    context.manager.add_entry("Goodbye")
+
 @when('I add "{text}" to memory')
 def step_when_add_memory(context, text):
     context.manager.add_entry(text)
@@ -22,9 +30,7 @@ def step_when_request_summary(context):
 
 @when('trimming is invoked')
 def step_when_trimming(context):
-    # Simplistic trimming to last 2 entries
-    if len(context.manager.history) > 2:
-        context.manager.history = context.manager.history[-2:]
+    context.manager.trim_history(2)
 
 @then('the summary contains "{text}"')
 def step_then_summary_contains(context, text):

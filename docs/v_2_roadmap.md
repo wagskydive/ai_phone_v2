@@ -85,7 +85,7 @@ Tools:
 - [x] Schedule outbound calls to extensions 601-608
 - [x] Add randomness to call interval (avg every 30 minutes)
 - [x] Restrict call times (e.g., avoid night)
-- [ ] Implement memory aging / pruning
+- [x] Implement memory aging / pruning
 
 ---
 

@@ -108,3 +108,14 @@ input is detected mid-response.
 
 ### Description
 Implement dialing logic to call extensions 601-608 at randomized intervals as per schedule configuration.
+
+## T11 - Memory pruning feature
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
+
+### Description
+Add trimming capability to `ContextManager` with a `trim_history` method and new
+BDD scenario ensuring old entries are removed when history exceeds a limit.
