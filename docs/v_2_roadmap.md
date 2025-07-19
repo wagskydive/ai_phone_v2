@@ -50,14 +50,14 @@ ai_phone_v2/
 ---
 
 ## 🥺 Phase 2: BDD-Driven Test First Development
-- [ ] Define BDD test features for core modules
-- [ ] Add tests for:
+- [x] Define BDD test features for core modules
+- [x] Add tests for:
   - LLM response flow
   - ASR transcription
   - TTS synthesis
   - Memory summarization
   - Outbound dialing logic
-- [ ] Implement test stubs and mocks
+- [x] Implement test stubs and mocks
 
 Tools:
 - `behave`
@@ -79,7 +79,7 @@ Tools:
 ---
 
 ## 🌟 Phase 4: Features & Intelligence
-- [ ] Summarize memory at end of call
+- [x] Summarize memory at end of call
 - [ ] Reference previous calls (context aware)
 - [ ] Interruptible AI responses using voice activity detection
 - [ ] Schedule outbound calls to extensions 601-608
