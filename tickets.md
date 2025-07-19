@@ -119,3 +119,13 @@ Implement dialing logic to call extensions 601-608 at randomized intervals as pe
 ### Description
 Add trimming capability to `ContextManager` with a `trim_history` method and new
 BDD scenario ensuring old entries are removed when history exceeds a limit.
+
+-## T12 - Context summarization scenario
+- [x] Started
+- [x] Behavior Written
+- [ ] Code Written
+- [ ] Tests Passed
+- [ ] Documentation Written
+
+### Description
+Add BDD scenario verifying ContextManager.summarize returns a combined string of recent statements.

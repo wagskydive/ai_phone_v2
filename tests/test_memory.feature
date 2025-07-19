@@ -6,6 +6,11 @@ Feature: Memory module
     Then the summary contains "Hello"
     And the summary contains "How are you?"
 
+  Scenario: Summarize last statements
+    Given a context manager with history
+    When I request a summary
+    Then a combined string of recent statements is returned
+
   Scenario: Persistent memory saved to disk
     Given a context manager with persistent storage
     When I add "Persistent" to memory
