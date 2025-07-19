@@ -139,3 +139,15 @@ Add BDD scenario verifying ContextManager.summarize returns a combined string of
 
 ### Description
 Implement recognition of caller names from transcribed text so the system can greet returning callers by name. Add BDD scenario and placeholder steps.
+
+## T14 - Ollama-based summarization
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
+
+### Description
+Update `ContextManager` so that conversation summaries are generated using the
+`OllamaLLM` client. Trimming excess history should also summarize trimmed
+entries via Ollama before discarding them.

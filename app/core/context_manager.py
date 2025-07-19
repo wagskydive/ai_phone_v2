@@ -1,4 +1,8 @@
+from __future__ import annotations
+
 import os
+
+from app.modules.llm import BaseLLM
 
 
 class ContextManager:
@@ -6,9 +10,10 @@ class ContextManager:
 
     SUMMARY_PREFIX = "SUMMARY: "
 
-    def __init__(self, storage_path: str | None = None, memory_limit: int | None = None):
+    def __init__(self, storage_path: str | None = None, memory_limit: int | None = None, llm: BaseLLM | None = None):
         self.storage_path = storage_path
         self.memory_limit = memory_limit
+        self.llm = llm
         # per-call history
         self.history: list[str] = []
         # summaries of previous calls
@@ -27,6 +32,17 @@ class ContextManager:
                         # treat plain lines from older files as summaries
                         self.past_summaries.append(line)
 
+    def _summarize_entries(self, entries: list[str]) -> str:
+        """Summarize a list of text entries using the configured LLM."""
+        text = " ".join(entries)
+        if self.llm:
+            try:
+                return self.llm.summarize(text)
+            except Exception:
+                # fallback to raw text on failure
+                pass
+        return text
+
     def add_entry(self, text: str) -> None:
         self.history.append(text)
         if self.storage_path:
@@ -39,11 +55,18 @@ class ContextManager:
         """Trim stored history to at most ``limit`` entries."""
         limit = limit if limit is not None else self.memory_limit
         if limit is not None and len(self.history) > limit:
+            excess = self.history[:-limit]
+            if excess:
+                summary = self._summarize_entries(excess)
+                if self.storage_path:
+                    with open(self.storage_path, "a") as f:
+                        f.write(f"{self.SUMMARY_PREFIX}{summary}\n")
+                self.past_summaries.append(summary)
             self.history = self.history[-limit:]
 
     def summarize(self) -> str:
-        """Return concatenated summary for now."""
-        return " ".join(self.history[-5:])
+        """Return a summary of recent history."""
+        return self._summarize_entries(self.history[-5:])
 
     def get_context(self) -> str:
         """Return prompt including past summaries and current history."""
@@ -51,7 +74,7 @@ class ContextManager:
 
     def save_summary(self) -> None:
         """Persist summary of current history and reset it."""
-        summary = self.summarize()
+        summary = self._summarize_entries(self.history)
         if self.storage_path:
             with open(self.storage_path, "a") as f:
                 f.write(f"{self.SUMMARY_PREFIX}{summary}\n")
