@@ -11,3 +11,8 @@ Feature: Memory module
     When I add "Persistent" to memory
     And I reload the context manager
     Then the summary contains "Persistent"
+
+  Scenario: History trimmed when exceeding limit
+    Given a context manager with history longer than limit
+    When trimming is invoked
+    Then only the most recent entries remain
