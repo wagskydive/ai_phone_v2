@@ -65,6 +65,17 @@ Enhance `CallScheduler` with configurable jitter to randomize call intervals and
 add BDD scenarios covering scheduling logic.
 
 ## T7 - Night mode scheduling
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
+
+### Description
+Restrict outbound calls to daytime hours using scheduler configuration and add
+BDD scenarios verifying calls are blocked outside this window.
+
+## T8 - Reference previous calls in context
 - [ ] Started
 - [ ] Behavior Written
 - [ ] Code Written
@@ -72,5 +83,6 @@ add BDD scenarios covering scheduling logic.
 - [ ] Documentation Written
 
 ### Description
-Restrict outbound calls to daytime hours using scheduler configuration and add
-BDD scenarios verifying calls are blocked outside this window.
+Enhance `ContextManager` and `CallHandler` so that the LLM prompt includes
+summaries from previous calls. Add BDD tests ensuring past conversation
+snippets are referenced when generating responses.
