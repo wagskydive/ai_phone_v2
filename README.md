@@ -19,4 +19,5 @@ Each implements a simple interface defined in the corresponding package's `__ini
 - `ContextManager` in `app/core/context_manager.py` supports optional
   persistence of conversation history.
 - `CallHandler` can be initialised with a storage path so that dialogue is
-  saved across calls.
+  saved across calls. Summaries are written with a `SUMMARY:` prefix so the
+  next call can include context from prior conversations.

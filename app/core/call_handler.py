@@ -28,8 +28,11 @@ class CallHandler:
         """Process an audio file and return audio response."""
         text = self.asr.transcribe(audio_path)
         self.context.add_entry(text)
-        reply = self.llm.generate(self.context.summarize())
+        prompt = self.context.get_context()
+        reply = self.llm.generate(prompt)
         self.context.add_entry(reply)
         audio = self.tts.synthesize(reply)
+        # persist summary so next call includes this dialogue
+        self.context.save_summary()
         return audio
 
