@@ -107,6 +107,7 @@ Tools:
 - [x] Implement core event loop and HTTP interface
 - [x] Expand BDD tests for core modules
 - [x] Begin implementing core modules
+- [x] Add persistent memory support
 
 Let me know if you'd like to generate any starter files or templates next!
 

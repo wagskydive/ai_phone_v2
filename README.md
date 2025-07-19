@@ -15,3 +15,8 @@ The current codebase includes placeholder modules matching the design:
 - `PiperTTS` in `app/modules/tts_piper.py`
 
 Each implements a simple interface defined in the corresponding package's `__init__.py` file.
+
+- `ContextManager` in `app/core/context_manager.py` supports optional
+  persistence of conversation history.
+- `CallHandler` can be initialised with a storage path so that dialogue is
+  saved across calls.
