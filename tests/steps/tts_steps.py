@@ -3,12 +3,12 @@ from app.modules.tts_piper import PiperTTS
 
 @given('the text "{text}"')
 def step_given_text(context, text):
-    context.text = text
+    context.tts_text = text
 
 @when('the TTS module synthesizes the text')
 def step_when_tts(context):
     tts = PiperTTS()
-    context.audio_bytes = tts.synthesize(context.text)
+    context.audio_bytes = tts.synthesize(context.tts_text)
 
 @then('audio bytes are produced')
 def step_then_audio_bytes(context):
