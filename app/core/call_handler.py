@@ -24,8 +24,16 @@ class CallHandler:
         # Use provided context or create one, optionally with persistence
         self.context = context or ContextManager(storage_path=storage_path)
 
-    def handle(self, audio_path: str) -> bytes:
-        """Process an audio file and return audio response."""
+    def handle(self, audio_path: str, interrupt_fn=None) -> bytes:
+        """Process an audio file and return audio response.
+
+        Parameters
+        ----------
+        audio_path
+            Path to the recorded caller audio.
+        interrupt_fn
+            Optional callable returning ``True`` if playback should stop.
+        """
         text = self.asr.transcribe(audio_path)
         self.context.add_entry(text)
         prompt = self.context.get_context()
@@ -34,5 +42,8 @@ class CallHandler:
         audio = self.tts.synthesize(reply)
         # persist summary so next call includes this dialogue
         self.context.save_summary()
+        if interrupt_fn and interrupt_fn():
+            # playback interrupted before completion
+            return b""
         return audio
 

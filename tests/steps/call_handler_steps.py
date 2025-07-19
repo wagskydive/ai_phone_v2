@@ -38,3 +38,11 @@ def step_then_two_summaries(context):
     summary_lines = [ln for ln in lines if ln.startswith('SUMMARY:')]
     assert len(summary_lines) >= 2
     os.unlink(context.memory_file)
+
+@when('I process an audio file with interruption')
+def step_when_process_with_interrupt(context):
+    context.audio = context.handler.handle('/tmp/input.wav', interrupt_fn=lambda: True)
+
+@then('no audio is returned')
+def step_then_no_audio(context):
+    assert context.audio == b''

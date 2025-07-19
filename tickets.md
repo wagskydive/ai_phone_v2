@@ -88,6 +88,18 @@ summaries from previous calls. Add BDD tests ensuring past conversation
 snippets are referenced when generating responses.
 
 ## T9 - Interruptible AI responses
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
+
+### Description
+Implement voice activity detection to stop TTS playback when the caller
+begins speaking. Write BDD scenarios verifying that playback halts when
+input is detected mid-response.
+
+## T10 - Schedule outbound call targets
 - [ ] Started
 - [ ] Behavior Written
 - [ ] Code Written
@@ -95,6 +107,4 @@ snippets are referenced when generating responses.
 - [ ] Documentation Written
 
 ### Description
-Implement voice activity detection to stop TTS playback when the caller
-begins speaking. Write BDD scenarios verifying that playback halts when
-input is detected mid-response.
+Implement dialing logic to call extensions 601-608 at randomized intervals as per schedule configuration.
