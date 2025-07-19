@@ -1,5 +1,11 @@
 """Minimal HTTP interface for call processing."""
-from flask import Flask, request, jsonify
+from __future__ import annotations
+
+import io
+import os
+import tempfile
+
+from flask import Flask, request, send_file, jsonify
 
 from app.modules.asr_whisper import WhisperASR
 from app.modules.llm_ollama import OllamaLLM
@@ -16,10 +22,17 @@ handler = CallHandler(asr, llm, tts, ContextManager())
 
 @app.route('/process', methods=['POST'])
 def process():
-    # In a real implementation audio data would be saved and processed
-    audio_path = '/tmp/input.wav'
-    audio = handler.handle(audio_path)
-    return jsonify({'audio_bytes': len(audio)})
+    """Process uploaded audio and return synthesized speech."""
+    uploaded = request.files.get('audio')
+    if not uploaded:
+        return jsonify({'error': 'no audio provided'}), 400
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.wav') as tmp:
+        uploaded.save(tmp.name)
+        audio_bytes = handler.handle(tmp.name)
+    os.unlink(tmp.name)
+
+    return send_file(io.BytesIO(audio_bytes), mimetype='audio/wav')
 
 if __name__ == '__main__':
     app.run()

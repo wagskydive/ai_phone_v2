@@ -192,3 +192,15 @@ the requirements and BDD tests to validate non-zero audio output.
 
 ### Description
 Allow loading multiple character configs and selecting personalities at runtime.
+
+## T19 - HTTP audio upload endpoint
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [ ] Tests Passed
+- [ ] Documentation Written
+
+### Description
+Extend the Flask server to accept uploaded audio data via POST `/process` and
+return synthesized audio bytes. Add BDD scenario verifying the endpoint processes
+an uploaded WAV file.
