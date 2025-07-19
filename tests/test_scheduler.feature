@@ -6,6 +6,7 @@ Feature: Call scheduling
 
   Scenario: Call allowed after interval
     Given a scheduler with interval 0 and jitter 0
+    And current hour is 10
     When I check if it should call now
     Then it returns True
 
@@ -25,6 +26,7 @@ Feature: Call scheduling
 
   Scenario: Next interval randomized after call
     Given a scheduler with interval 30 and jitter 5
+    And current hour is 10
     When I check if it should call now
     Then it returns True
     And the interval is between 25 and 35

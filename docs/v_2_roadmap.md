@@ -81,7 +81,7 @@ Tools:
 ## 🌟 Phase 4: Features & Intelligence
 - [x] Summarize memory at end of call
 - [x] Reference previous calls (context aware)
-- [ ] Interruptible AI responses using voice activity detection
+- [x] Interruptible AI responses using voice activity detection
 - [ ] Schedule outbound calls to extensions 601-608
 - [x] Add randomness to call interval (avg every 30 minutes)
 - [x] Restrict call times (e.g., avoid night)
