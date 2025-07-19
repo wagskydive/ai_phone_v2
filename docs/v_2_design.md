@@ -72,6 +72,7 @@ ai_phone_v2/
 - Summaries are written to disk prefixed with `SUMMARY:` so later calls can
   reference prior conversations
 - Uses summarization to avoid unbounded memory growth
+- Summaries currently concatenate the last few history entries for simplicity
 
 ### Scheduler
 - Triggers outbound calls to extensions 601-608

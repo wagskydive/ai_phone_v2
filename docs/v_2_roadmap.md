@@ -108,6 +108,7 @@ Tools:
 - [x] Expand BDD tests for core modules
 - [x] Begin implementing core modules
 - [x] Add persistent memory support
+- [x] Add context summarization scenario
 
 Let me know if you'd like to generate any starter files or templates next!
 

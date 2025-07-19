@@ -120,12 +120,22 @@ Implement dialing logic to call extensions 601-608 at randomized intervals as pe
 Add trimming capability to `ContextManager` with a `trim_history` method and new
 BDD scenario ensuring old entries are removed when history exceeds a limit.
 
--## T12 - Context summarization scenario
+## T12 - Context summarization scenario
 - [x] Started
 - [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
+
+### Description
+Add BDD scenario verifying ContextManager.summarize returns a combined string of recent statements.
+
+## T13 - Name-based greeting feature
+- [ ] Started
+- [ ] Behavior Written
 - [ ] Code Written
 - [ ] Tests Passed
 - [ ] Documentation Written
 
 ### Description
-Add BDD scenario verifying ContextManager.summarize returns a combined string of recent statements.
+Implement recognition of caller names from transcribed text so the system can greet returning callers by name. Add BDD scenario and placeholder steps.
