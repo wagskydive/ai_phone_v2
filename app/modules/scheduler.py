@@ -1,6 +1,7 @@
 import json
 import os
 import time
+import random
 from datetime import datetime
 
 
@@ -10,6 +11,16 @@ class CallScheduler:
     def __init__(self, config_path: str = "app/config/schedule.json") -> None:
         self.config = self._load_config(config_path)
         self.last_call = 0.0
+        # determine interval with jitter for first call
+        self.next_interval = self._calculate_interval()
+
+    def _calculate_interval(self) -> float:
+        """Return call interval in minutes including jitter."""
+        base = self.config.get("call_interval_minutes", 30)
+        jitter = self.config.get("jitter_minutes", 0)
+        if jitter <= 0:
+            return float(base)
+        return float(base) + random.uniform(-jitter, jitter)
 
     def _load_config(self, path: str) -> dict:
         if os.path.exists(path):
@@ -30,8 +41,9 @@ class CallScheduler:
         end = hours.get("end", 17)
         if not start <= now.hour < end:
             return False
-        interval = self.config.get("call_interval_minutes", 30)
-        if time.time() - self.last_call >= interval * 60:
+        if time.time() - self.last_call >= self.next_interval * 60:
             self.last_call = time.time()
+            # calculate next interval for subsequent calls
+            self.next_interval = self._calculate_interval()
             return True
         return False

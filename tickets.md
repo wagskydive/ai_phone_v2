@@ -52,3 +52,14 @@ Build initial ASR, TTS and LLM module classes with real method signatures as spe
 
 ### Description
 Extend `ContextManager` to optionally persist history to disk and integrate it with `CallHandler`. Add BDD scenario for persistent memory.
+
+## T6 - Scheduler randomness and tests
+- [ ] Started
+- [ ] Behavior Written
+- [ ] Code Written
+- [ ] Tests Passed
+- [ ] Documentation Written
+
+### Description
+Enhance `CallScheduler` with configurable jitter to randomize call intervals and
+add BDD scenarios covering scheduling logic.

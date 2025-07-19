@@ -1,0 +1,10 @@
+Feature: Call scheduling
+  Scenario: Interval includes jitter
+    Given a scheduler with interval 30 and jitter 5
+    When I calculate the next interval
+    Then the interval is between 25 and 35
+
+  Scenario: Call allowed after interval
+    Given a scheduler with interval 0 and jitter 0
+    When I check if it should call now
+    Then it returns True
