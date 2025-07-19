@@ -106,7 +106,7 @@ Tools:
 - [x] Set up placeholder modules
 - [x] Implement core event loop and HTTP interface
 - [x] Expand BDD tests for core modules
-- [ ] Begin implementing core modules
+- [x] Begin implementing core modules
 
 Let me know if you'd like to generate any starter files or templates next!
 

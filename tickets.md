@@ -34,11 +34,11 @@ Write additional BDD features covering ASR, TTS and memory modules as
 outlined in `docs/features/` for future development.
 
 ## T4 - Implement core module skeletons
-- [ ] Started
-- [ ] Behavior Written
-- [ ] Code Written
-- [ ] Tests Passed
-- [ ] Documentation Written
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
 
 ### Description
 Build initial ASR, TTS and LLM module classes with real method signatures as specified in `docs/v_2_design.md`. No external integrations yet.
