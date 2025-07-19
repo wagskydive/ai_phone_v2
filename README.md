@@ -13,6 +13,7 @@ The current codebase includes placeholder modules matching the design:
 - `WhisperASR` in `app/modules/asr_whisper.py`
 - `OllamaLLM` in `app/modules/llm_ollama.py`
 - `PiperTTS` in `app/modules/tts_piper.py`
+- `OutboundDialer` in `app/modules/dialer/outbound_dialer.py`
 
 Each implements a simple interface defined in the corresponding package's `__init__.py` file.
 

@@ -100,11 +100,11 @@ begins speaking. Write BDD scenarios verifying that playback halts when
 input is detected mid-response.
 
 ## T10 - Schedule outbound call targets
-- [ ] Started
-- [ ] Behavior Written
-- [ ] Code Written
-- [ ] Tests Passed
-- [ ] Documentation Written
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
 
 ### Description
 Implement dialing logic to call extensions 601-608 at randomized intervals as per schedule configuration.
