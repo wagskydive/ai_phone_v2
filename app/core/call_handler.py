@@ -38,6 +38,9 @@ class CallHandler:
         self.context.add_entry(text)
         prompt = self.context.get_context()
         reply = self.llm.generate(prompt)
+        if self.context.caller_name:
+            reply = f"Hello {self.context.caller_name}, " + reply
+        self.last_reply = reply
         self.context.add_entry(reply)
         audio = self.tts.synthesize(reply)
         # persist summary so next call includes this dialogue

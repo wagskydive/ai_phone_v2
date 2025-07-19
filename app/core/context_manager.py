@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import re
 
 from app.modules.llm import BaseLLM
 
@@ -9,11 +10,13 @@ class ContextManager:
     """Simple context store with optional persistence and trimming."""
 
     SUMMARY_PREFIX = "SUMMARY: "
+    NAME_PREFIX = "NAME: "
 
     def __init__(self, storage_path: str | None = None, memory_limit: int | None = None, llm: BaseLLM | None = None):
         self.storage_path = storage_path
         self.memory_limit = memory_limit
         self.llm = llm
+        self.caller_name: str | None = None
         # per-call history
         self.history: list[str] = []
         # summaries of previous calls
@@ -23,6 +26,9 @@ class ContextManager:
                 for line in f:
                     line = line.strip()
                     if not line:
+                        continue
+                    if line.startswith(self.NAME_PREFIX):
+                        self.caller_name = line[len(self.NAME_PREFIX) :]
                         continue
                     if line.startswith(self.SUMMARY_PREFIX):
                         self.past_summaries.append(
@@ -43,7 +49,40 @@ class ContextManager:
                 pass
         return text
 
+    def _extract_name(self, text: str) -> str | None:
+        """Return a caller name found in ``text`` using the LLM if available."""
+        if self.llm and hasattr(self.llm, "extract_name"):
+            try:
+                name = self.llm.extract_name(text)
+                if name:
+                    return name
+            except Exception:
+                pass
+        text = text.lower()
+        patterns = [
+            r"my name is ([a-zA-Z]+)",
+            r"i am ([a-zA-Z]+)",
+            r"i'm ([a-zA-Z]+)",
+            r"this is ([a-zA-Z]+)",
+        ]
+        for pat in patterns:
+            match = re.search(pat, text)
+            if match:
+                return match.group(1).capitalize()
+        return None
+
+    def set_caller_name(self, name: str) -> None:
+        """Persist and store the caller name."""
+        self.caller_name = name
+        if self.storage_path:
+            with open(self.storage_path, "a") as f:
+                f.write(f"{self.NAME_PREFIX}{name}\n")
+
     def add_entry(self, text: str) -> None:
+        if self.caller_name is None:
+            name = self._extract_name(text)
+            if name:
+                self.set_caller_name(name)
         self.history.append(text)
         if self.storage_path:
             with open(self.storage_path, "a") as f:

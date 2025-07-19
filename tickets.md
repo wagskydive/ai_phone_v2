@@ -131,11 +131,11 @@ BDD scenario ensuring old entries are removed when history exceeds a limit.
 Add BDD scenario verifying ContextManager.summarize returns a combined string of recent statements.
 
 ## T13 - Name-based greeting feature
-- [ ] Started
-- [ ] Behavior Written
-- [ ] Code Written
-- [ ] Tests Passed
-- [ ] Documentation Written
+- [x] Started
+- [x] Behavior Written
+- [x] Code Written
+- [x] Tests Passed
+- [x] Documentation Written
 
 ### Description
 Implement recognition of caller names from transcribed text so the system can greet returning callers by name. Add BDD scenario and placeholder steps.
@@ -182,3 +182,13 @@ Store test audio as a base64 string to avoid binary files in the repo. Update st
 ### Description
 Integrate the Piper TTS engine so that `PiperTTS` produces real audio bytes. Update
 the requirements and BDD tests to validate non-zero audio output.
+
+## T18 - Character customization feature
+- [ ] Started
+- [ ] Behavior Written
+- [ ] Code Written
+- [ ] Tests Passed
+- [ ] Documentation Written
+
+### Description
+Allow loading multiple character configs and selecting personalities at runtime.

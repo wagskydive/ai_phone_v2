@@ -34,3 +34,17 @@ class OllamaLLM(BaseLLM):
         """Summarize ``text`` using the LLM."""
         system = "Summarize the following conversation briefly."
         return self.generate(text, system=system)
+
+    def extract_name(self, text: str) -> str | None:
+        """Extract a caller's first name from ``text``."""
+        system = (
+            "Extract the caller's first name from the following text. "
+            "Reply with just the name or 'None' if no name is mentioned."
+        )
+        response = self.generate(text, system=system)
+        if not response or response.startswith("You said"):
+            return None
+        name = response.strip().split()[0]
+        if not name or name.lower() == "none":
+            return None
+        return name
