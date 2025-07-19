@@ -102,8 +102,8 @@ Tools:
 ---
 
 ## Next Steps
-- [ ] Draft initial BDD tests
-- [ ] Set up placeholder modules
+- [x] Draft initial BDD tests
+- [x] Set up placeholder modules
 - [ ] Implement core event loop and HTTP interface
 
 Let me know if you'd like to generate any starter files or templates next!
