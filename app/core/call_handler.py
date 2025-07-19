@@ -22,7 +22,7 @@ class CallHandler:
         self.llm = llm
         self.tts = tts
         # Use provided context or create one, optionally with persistence
-        self.context = context or ContextManager(storage_path=storage_path)
+        self.context = context or ContextManager(storage_path=storage_path, llm=self.llm)
 
     def handle(self, audio_path: str, interrupt_fn=None) -> bytes:
         """Process an audio file and return audio response.
