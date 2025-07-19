@@ -8,3 +8,15 @@ Feature: Call scheduling
     Given a scheduler with interval 0 and jitter 0
     When I check if it should call now
     Then it returns True
+
+  Scenario: No call outside hours
+    Given a scheduler with interval 0 and jitter 0
+    And call window hours start 23 end 23
+    When I check if it should call now
+    Then it returns False
+
+  Scenario: Next interval randomized after call
+    Given a scheduler with interval 30 and jitter 5
+    When I check if it should call now
+    Then it returns True
+    And the interval is between 25 and 35
