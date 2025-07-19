@@ -14,3 +14,7 @@ def step_when_tts(context):
 def step_then_audio_bytes(context):
     assert isinstance(context.audio_bytes, (bytes, bytearray))
     assert len(context.audio_bytes) > 0
+
+@then('the audio length is greater than {length:d}')
+def step_then_audio_length(context, length: int):
+    assert len(context.audio_bytes) > length

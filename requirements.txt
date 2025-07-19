@@ -2,3 +2,4 @@ behave
 flask
 requests
 openai-whisper==20231117
+piper-tts
